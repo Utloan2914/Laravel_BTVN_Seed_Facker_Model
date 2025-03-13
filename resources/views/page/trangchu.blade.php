@@ -2,11 +2,12 @@
 @section('content')
 <div class="container mt-4">
     <div class="row">
-        @foreach($slide as $sl)
-        <div class="col-md-3 col-sm-6">
+        @foreach($slide as $index => $sl)
+        <div class="col-md-12 text-center">
             <img src="{{ asset('source/image/slide/'.$sl->image) }}"
                 onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=No+Image'"
-                class="img-fluid rounded" style="height: 200px; object-fit: cover;">
+                class="img-fluid rounded slide-image"
+                style="height: 600px; width: 100%; object-fit: cover; display: {{ $index == 0 ? 'block' : 'none' }};">
         </div>
         @endforeach
     </div>
@@ -97,9 +98,7 @@
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" href="{{route('themgiohang',$km->id)}}"><i
                                                 class="fa fa-shopping-cart"></i></a>
-
-                                        <a class="add-to-wishlist" href="wishlist/add/{{$new->id}}"><i class="fa fa-heart"></i></a>
-
+                                        <a class="add-to-wishlist" href="wishlist/add/{{$km->id}}"><i class="fa fa-heart"></i></a>
                                         <a class="beta-btn primary" href="detail/{{$km->id}}">Details <i
                                                 class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
@@ -117,5 +116,18 @@
         </div> <!-- .main-content -->
     </div> <!-- #content -->
 </div> <!-- .container -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let images = document.querySelectorAll(".slide-image");
+        let index = 0;
 
+        function showNextImage() {
+            images[index].style.display = "none";
+            index = (index + 1) % images.length;
+            images[index].style.display = "block";
+        }
+
+        setInterval(showNextImage, 4000);
+    });
+</script>
 @endsection

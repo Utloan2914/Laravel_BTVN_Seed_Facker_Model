@@ -31,18 +31,11 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            @include('common.header')
-        </nav>
-    </header>
+    @include('common.header')
     <div class="container">
         @yield('content')
     </div>
-
     @include('common.footer')
-
 
 </body>
 
