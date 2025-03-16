@@ -85,6 +85,14 @@ return new class extends Migration
             $table->string('image', 100);
             $table->timestamps();
         });
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
+            $table->string('username');
+            $table->text('comment');
+            $table->unsignedBigInteger('id_product');
+            $table->timestamps();
+            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
+        });
     }
 
     /**
@@ -100,5 +108,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('news');
         Schema::dropIfExists('slides');
+        Schema::dropIfExists('comments');
     }
 };

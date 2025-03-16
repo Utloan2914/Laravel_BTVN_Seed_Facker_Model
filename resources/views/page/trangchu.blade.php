@@ -7,7 +7,8 @@
             <img src="{{ asset('source/image/slide/'.$sl->image) }}"
                 onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=No+Image'"
                 class="img-fluid rounded slide-image"
-                style="height: 600px; width: 100%; object-fit: cover; display: {{ $index == 0 ? 'block' : 'none' }};">
+                style="height: 600px; width: 100%; object-fit: cover; display: none;"
+                data-index="{{ $index }}">
         </div>
         @endforeach
     </div>
@@ -118,16 +119,20 @@
 </div> <!-- .container -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let images = document.querySelectorAll(".slide-image");
-        let index = 0;
+        let slides = document.querySelectorAll(".slide-image");
+        let currentIndex = 0;
+        let totalSlides = slides.length;
+        slides[currentIndex].style.display = "block";
 
-        function showNextImage() {
-            images[index].style.display = "none";
-            index = (index + 1) % images.length;
-            images[index].style.display = "block";
+        function showSlide(index) {
+            slides.forEach(slide => slide.style.display = "none");
+            slides[index].style.display = "block";
         }
 
-        setInterval(showNextImage, 4000);
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }, 4000);
     });
 </script>
 @endsection

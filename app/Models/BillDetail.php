@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BillDetail extends Model
 {
     use HasFactory;
-
+    protected $table = 'bill_detail';
     protected $fillable = ['id_bill', 'id_product', 'quantity', 'unit_price'];
 
     public function bill()
@@ -21,4 +21,3 @@ class BillDetail extends Model
         return $this->belongsTo(Product::class, 'id_product');
     }
 }
-
