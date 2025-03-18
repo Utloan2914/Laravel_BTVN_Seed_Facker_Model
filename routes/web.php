@@ -29,6 +29,6 @@ Route::delete('/admin-delete/{id}', [PageController::class, 'postAdminDelete'])-
 
 Route::get('/admin-export', [PageController::class, 'exportAdminProduct'])->name('export');
 
-Route::get('/return-vnpay', function () {
-    return view('vnpay.return-vnpay');
-});
+// Route::get('/return-vnpay', function () {
+//     return view('vnpay.return-vnpay');
+// });

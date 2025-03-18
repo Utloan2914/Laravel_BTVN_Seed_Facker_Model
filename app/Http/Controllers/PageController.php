@@ -88,6 +88,10 @@ class PageController extends Controller
         $product = Product::find($id);
         return view('pageadmin.formEdit')->with('product', $product);
     }
+    public function exportAdminProduct() {
+        return "Chức năng export chưa được triển khai.";
+    }
+    
     public function index()
     {
         $slide = Slide::all();
