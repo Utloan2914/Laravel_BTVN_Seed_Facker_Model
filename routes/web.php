@@ -32,3 +32,6 @@ Route::get('/admin-export', [PageController::class, 'exportAdminProduct'])->name
 // Route::get('/return-vnpay', function () {
 //     return view('vnpay.return-vnpay');
 // });
+
+
+Route::get('/search', [PageController::class, 'search'])->name('search');

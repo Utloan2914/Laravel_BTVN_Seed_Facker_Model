@@ -88,10 +88,11 @@ class PageController extends Controller
         $product = Product::find($id);
         return view('pageadmin.formEdit')->with('product', $product);
     }
-    public function exportAdminProduct() {
+    public function exportAdminProduct()
+    {
         return "Chức năng export chưa được triển khai.";
     }
-    
+
     public function index()
     {
         $slide = Slide::all();
@@ -146,5 +147,16 @@ class PageController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Bình luận đã được thêm.');
+    }
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        if (!$keyword) {
+            return view('page.search', ['products' => collect()]);
+        }
+        $products = Product::where('name', 'LIKE', "%{$keyword}%")->paginate(8);
+
+        return view('page.search', compact('products'));
     }
 }

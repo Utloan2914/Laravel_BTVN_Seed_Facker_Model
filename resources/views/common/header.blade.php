@@ -25,10 +25,11 @@
 			<div class="pull-right beta-components space-left ov">
 				<div class="space10">&nbsp;</div>
 				<div class="beta-comp">
-					<form role="search" method="get" id="searchform" action="/">
-						<input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
-						<button class="fa fa-search" type="submit" id="searchsubmit"></button>
+					<form action="{{ route('search') }}" method="GET">
+						<input type="text" name="keyword" placeholder="Nhập từ khóa..." required>
+						<button type="submit"><i class="fa fa-search"></i></button>
 					</form>
+					<!-- search -->
 				</div>
 
 				<div class="beta-comp">
