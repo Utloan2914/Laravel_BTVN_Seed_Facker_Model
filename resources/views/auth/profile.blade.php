@@ -4,9 +4,10 @@
     .container {
         margin-top: 30px;
         margin-bottom: 30px;
+        margin-left: 150px;
     }
 </style>
-<div class="container mt-5">
+<div class="container mt-5 justify-center">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-lg rounded">
