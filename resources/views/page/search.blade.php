@@ -29,7 +29,7 @@
                     <div class="single-item-header">
                         <a href="{{ route('detail', $product->id) }}">
                             <img width="200" height="200"
-                                src="{{ asset('public/source/assets/dest/images/products/' . $product->image) }}" alt="">
+                                src="{{ asset('/source/image/product' . $product->image) }}" alt="">
                         </a>
                     </div>
 

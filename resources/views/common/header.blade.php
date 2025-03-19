@@ -1,6 +1,7 @@
 <div id="header">
 	<div class="header-top">
 		<div class="container">
+
 			<div class="pull-left auto-width-left">
 				<ul class="top-menu menu-beta l-inline">
 					<li><a href=""><i class="fa fa-home"></i> 90-92 Lê Thị Riêng, Bến Thành, Quận 1</a></li>
@@ -9,9 +10,12 @@
 			</div>
 			<div class="pull-right auto-width-right">
 				<ul class="top-details menu-beta l-inline">
-					<li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
-					<li><a href="#">Đăng kí</a></li>
-					<li><a href="#">Đăng nhập</a></li>
+					@if(Auth::check())
+					<li><a href="{{ route('profile') }}"><i class="fa fa-user"></i>Tài khoản</a></li>
+					@else
+					<li><a href="{{ route('register') }}">Đăng ký</a></li>
+					<li><a href="{{ route('login') }}">Đăng nhập</a></li>
+					@endif
 				</ul>
 			</div>
 			<div class="clearfix"></div>
