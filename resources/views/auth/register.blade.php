@@ -2,40 +2,40 @@
 
 @section('content')
 <style>
-    .custom-margin {
-        margin: 100px;
+    .container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: 150px;
+        width: 70%;
     }
     .text-center {
         margin-top: 10px;
     }
 </style>
-
-<div class="container custom-margin">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-header text-center">
-                    <h2>Đăng Nhập</h2>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('login') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Mật Khẩu:</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
-                    </form>
-                    <div class="text-center">
-                        <p>Chưa có tài khoản? <a href="{{ route('register') }}">Đăng ký ngay</a></p>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+    <h2 class="text-center mb-1">Đăng ký</h2>
+    <form action="{{ route('register') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label>Họ tên:</label>
+            <input type="text" name="name" class="form-control" required>
         </div>
-    </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Xác nhận mật khẩu:</label>
+            <input type="password" name="password_confirmation" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+        <div class="text-center mt-3">
+            <p>Đã có tài khoản?<a href="{{ route('login') }}">Đăng nhập</a></p>
+        </div>
+    </form>
 </div>
 @endsection

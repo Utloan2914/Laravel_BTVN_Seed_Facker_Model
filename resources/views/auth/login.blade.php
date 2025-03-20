@@ -3,7 +3,10 @@
 @section('content')
 <style>
     .custom-margin {
-        margin: 100px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: 350px;
+        width: 70%;
     }
 
     .text-center {

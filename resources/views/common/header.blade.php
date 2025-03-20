@@ -26,15 +26,17 @@
 			<div class="pull-left">
 				<a href="index.html" id="logo"><img src="source/assets/dest/images/logo-cake.png" width="200px" alt=""></a>
 			</div>
-			<div class="pull-right beta-components space-left ov">
-				<div class="space10">&nbsp;</div>
-				<div class="beta-comp">
-					<form action="{{ route('search') }}" method="GET">
-						<input type="text" name="keyword" placeholder="Nhập từ khóa..." required>
-						<button type="submit"><i class="fa fa-search"></i></button>
+			<div class="pull-right beta-components space-left ov ">
+				<div class="space-x-4">&nbsp;</div>
+				<div class="beta-comp d-flex">
+					<form action="{{ route('search') }}" method="GET" class="d-flex align-items-center">
+						<input type="text" name="keyword" class="form-control me-2" placeholder="Nhập từ khóa..." required>
+						<button type="submit" class="btn btn-primary d-flex align-items-center">
+							<i class="fa fa-search"></i>
+						</button>
 					</form>
-					<!-- search -->
 				</div>
+
 
 				<div class="beta-comp">
 					<div class="cart">

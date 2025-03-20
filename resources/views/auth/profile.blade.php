@@ -33,11 +33,21 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <form action="{{ route('logout') }}" method="GET" style="display: inline;">
+                        <form id="logoutForm" action="{{ route('logout') }}" method="GET" style="display: inline;">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-lg"><i class="bi bi-box-arrow-right me-2"></i> Đăng xuất</button>
+                            <button type="button" class="btn btn-danger btn-lg" onclick="handleLogout()">
+                                <i class="bi bi-box-arrow-right me-2"></i> Đăng xuất
+                            </button>
                         </form>
                     </div>
+
+                    <script>
+                        function handleLogout() {
+                            localStorage.clear();
+                            document.getElementById("logoutForm").submit();
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>
