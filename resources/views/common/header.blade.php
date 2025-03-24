@@ -40,53 +40,53 @@
 
 				<div class="beta-comp">
 					<div class="cart">
-						<div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng (Trống) <i class="fa fa-chevron-down"></i></div>
-						<div class="beta-dropdown cart-body">
+						@php
+						$cart = session()->get('cart', []);
+						$totalQuantity = array_sum(array_column($cart, 'quantity'));
+						@endphp
+						<div class="beta-select" id="cart-toggle">
+							<i class="fa fa-shopping-cart"></i> Giỏ hàng ({{ $totalQuantity }} sản phẩm)
+							<i class="fa fa-chevron-down"></i>
+						</div>
+						<div class="beta-dropdown cart-body" id="cart-dropdown" style="display: none;">
+							@if(count($cart) > 0)
+							@foreach($cart as $item)
 							<div class="cart-item">
 								<div class="media">
-									<a class="pull-left" href="#"><img src="source/assets/dest/images/products/cart/1.png" alt=""></a>
+									<a class="pull-left" href="#"><img src="/source/image/product/{{ $item['image'] }}" alt=""></a>
 									<div class="media-body">
-										<span class="cart-item-title">Sample Woman Top</span>
-										<span class="cart-item-options">Size: XS; Colar: Navy</span>
-										<span class="cart-item-amount">1*<span>$49.50</span></span>
+										<span class="cart-item-title">{{ $item['name'] }}</span>
+										<span class="cart-item-amount">{{ $item['quantity'] }} * <span>{{ number_format($item['price']) }} Đồng</span></span>
 									</div>
 								</div>
 							</div>
-
-							<div class="cart-item">
-								<div class="media">
-									<a class="pull-left" href="#"><img src="source/assets/dest/images/products/cart/2.png" alt=""></a>
-									<div class="media-body">
-										<span class="cart-item-title">Sample Woman Top</span>
-										<span class="cart-item-options">Size: XS; Colar: Navy</span>
-										<span class="cart-item-amount">1*<span>$49.50</span></span>
-									</div>
-								</div>
-							</div>
-
-							<div class="cart-item">
-								<div class="media">
-									<a class="pull-left" href="#"><img src="source/assets/dest/images/products/cart/3.png" alt=""></a>
-									<div class="media-body">
-										<span class="cart-item-title">Sample Woman Top</span>
-										<span class="cart-item-options">Size: XS; Colar: Navy</span>
-										<span class="cart-item-amount">1*<span>$49.50</span></span>
-									</div>
-								</div>
-							</div>
-
+							@endforeach
 							<div class="cart-caption">
-								<div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">$34.55</span></div>
+								<div class="cart-total text-right">
+									Tổng tiền: <span class="cart-total-value">
+										{{ number_format(array_sum(array_map(fn($item) => $item['quantity'] * $item['price'], $cart))) }} Đồng
+									</span>
+								</div>
 								<div class="clearfix"></div>
-
 								<div class="center">
 									<div class="space10">&nbsp;</div>
 									<a href="checkout.html" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
 								</div>
 							</div>
+							@else
+							<p class="text-center">Giỏ hàng của bạn đang trống</p>
+							@endif
 						</div>
-					</div> <!-- .cart -->
+					</div>
 				</div>
+
+				<script>
+					document.getElementById('cart-toggle').addEventListener('click', function() {
+						let cartDropdown = document.getElementById('cart-dropdown');
+						cartDropdown.style.display = (cartDropdown.style.display === 'none' || cartDropdown.style.display === '') ? 'block' : 'none';
+					});
+				</script>
+
 			</div>
 			<div class="clearfix"></div>
 		</div> <!-- .container -->
@@ -105,6 +105,12 @@
 							@endforeach
 						</ul>
 					</li>
+					<li>
+						<a href="{{ route('wishlist') }}">
+							Sản phẩm yêu thích ({{ count(session()->get('wishlist', [])) }})
+						</a>
+					</li>
+
 					<li><a href="{{route('about')}}">Giới thiệu</a></li>
 					<li><a href="{{route('lienhe')}}">Liên hệ</a></li>
 				</ul>
